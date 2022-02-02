@@ -23,10 +23,11 @@ const fetchContacts = async () => {
 const generateContactsCard = async () => {
   // fetch the contacts using the fetch API:
   const contacts = await fetchContacts();
-
+  let htmlStr = '';
   // map through the contacts array and generate the cards:
-  const htmlStr = contacts.map((contact) => {
-    return `<li class='contact-item cf'>
+  const cardList = contacts.map(
+    (contact) =>
+      (htmlStr += `<li class='contact-item cf'>
             <div class='contact-details'>
               <img class='avatar' src='${contact.src}' />
               <h3>${contact.name}</h3>
@@ -35,8 +36,8 @@ const generateContactsCard = async () => {
             <div class='joined-details'>
               <span class='date'>${contact.joined}</span>
             </div>
-          </li>`;
-  });
+        </li>`)
+  );
 
   // display the cards:
   cards.innerHTML = htmlStr;
