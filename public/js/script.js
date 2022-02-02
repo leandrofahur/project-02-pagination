@@ -1,4 +1,5 @@
 const cards = document.getElementById('cards');
+const links = document.getElementById('links');
 
 /**
  *
@@ -25,7 +26,7 @@ const generateContactsCard = async () => {
   const contacts = await fetchContacts();
   let htmlStr = '';
   // map through the contacts array and generate the cards:
-  const cardList = contacts.map(
+  contacts.map(
     (contact) =>
       (htmlStr += `<li class='contact-item cf'>
             <div class='contact-details'>
@@ -43,6 +44,34 @@ const generateContactsCard = async () => {
   cards.innerHTML = htmlStr;
 };
 
-// fetchContacts();
+/**
+ *
+ * Anonymous function: format the list with the html + css.
+ *
+ */
+const generatePaginationLinks = async () => {
+  // fetch the contacts using the fetch API:
+  const contacts = await fetchContacts();
+  // get the total num of contacts and the max user per page:
+  const totalNumOfContacts = contacts.length;
+  const totalNumOfContactsPerPage = 10;
+  const numOfButtons = Math.floor(
+    totalNumOfContacts / totalNumOfContactsPerPage
+  );
+
+  let htmlStr = '';
+  for (let i = 0; i < numOfButtons; i++) {
+    htmlStr += `<li><a>${i + 1}</a></li>`;
+  }
+
+  // display the cards:
+  links.innerHTML = htmlStr;
+};
+
+/**
+ *
+ * Application per se:
+ *
+ */
 generateContactsCard();
-// fetchContacts().then((contacts) => console.log(contacts));
+generatePaginationLinks();
