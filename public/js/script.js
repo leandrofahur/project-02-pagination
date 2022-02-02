@@ -55,7 +55,7 @@ const generatePaginationLinks = async () => {
   // get the total num of contacts and the max user per page:
   const totalNumOfContacts = contacts.length;
   const totalNumOfContactsPerPage = 10;
-  const numOfButtons = Math.floor(
+  const numOfButtons = Math.ceil(
     totalNumOfContacts / totalNumOfContactsPerPage
   );
 
