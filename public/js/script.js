@@ -1,5 +1,6 @@
 const cards = document.getElementById('cards');
 const links = document.getElementById('links');
+const form = document.querySelector('form');
 
 /**
  *
@@ -61,11 +62,24 @@ const generatePaginationLinks = async () => {
 
   let htmlStr = '';
   for (let i = 0; i < numOfButtons; i++) {
-    htmlStr += `<li><a>${i + 1}</a></li>`;
+    // onclick added to find the button number and apply a rule for a certain range of user:
+    htmlStr += `<li><a id='${i + 1}' onclick='onSelect(id)'>${i + 1}</a></li>`;
   }
 
   // display the cards:
   links.innerHTML = htmlStr;
+};
+
+/**
+ *
+ * Calculate the range of user to displpay, based on the
+ * link clicked on the paginator
+ *
+ */
+const onSelect = (id) => {
+  // console.log(id);
+  if (id === 1) {
+  }
 };
 
 /**
