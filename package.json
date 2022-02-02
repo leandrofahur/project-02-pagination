@@ -1,0 +1,28 @@
+{
+  "name": "project-02-pagination",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\"><strong>PROJECT 02 - Adding Page Number Links</strong></h1> <br> <br> <h2>🎯 <strong>Objective</strong></h2> <p>This repository intends to host the implementation of the second project from CSIS 3380.</p> <br/>",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leandrofahur/project-02-pagination.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leandrofahur/project-02-pagination/issues"
+  },
+  "homepage": "https://github.com/leandrofahur/project-02-pagination#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
