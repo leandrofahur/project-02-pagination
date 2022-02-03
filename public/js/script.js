@@ -1,6 +1,6 @@
-const cards = document.getElementById('cards');
-const links = document.getElementById('links');
-const form = document.querySelector('form');
+const cards = document.getElementById("cards");
+const links = document.getElementById("links");
+const form = document.querySelector("form");
 
 /**
  *
@@ -9,8 +9,8 @@ const form = document.querySelector('form');
  *
  */
 const fetchContacts = async () => {
-  const response = await fetch('http://localhost:3000/contacts', {
-    method: 'GET',
+  const response = await fetch("http://localhost:3000/contacts", {
+    method: "GET",
   });
 
   const data = await response.json();
@@ -22,12 +22,16 @@ const fetchContacts = async () => {
  * Anonymous function: format the list with the html + css.
  *
  */
-const generateContactsCard = async () => {
+const generateContactsCard = async (minNum, maxNum) => {
   // fetch the contacts using the fetch API:
   const contacts = await fetchContacts();
-  let htmlStr = '';
+
+  // use the minNum and maxNum to retrieve a range of objects from the contacts array:
+  const contactsRange = contacts.slice(minNum, maxNum);
+
+  let htmlStr = "";
   // map through the contacts array and generate the cards:
-  contacts.map(
+  contactsRange.map(
     (contact) =>
       (htmlStr += `<li class='contact-item cf'>
             <div class='contact-details'>
@@ -60,7 +64,7 @@ const generatePaginationLinks = async () => {
     totalNumOfContacts / totalNumOfContactsPerPage
   );
 
-  let htmlStr = '';
+  let htmlStr = "";
   for (let i = 0; i < numOfButtons; i++) {
     // onclick added to find the button number and apply a rule for a certain range of user:
     htmlStr += `<li><a id='${i + 1}' onclick='onSelect(id)'>${i + 1}</a></li>`;
@@ -76,10 +80,19 @@ const generatePaginationLinks = async () => {
  * link clicked on the paginator
  *
  */
+const calcRange = (btnNumber) => {
+  return [(btnNumber - 1) * 10, btnNumber * 10 - 1];
+};
+
+/**
+ *
+ * Event that receives the btn id and refresh the display
+ *
+ */
 const onSelect = (id) => {
-  // console.log(id);
-  if (id === 1) {
-  }
+  numRange = calcRange(id);
+  // console.log(numRange[0], numRange[1]);
+  generateContactsCard(numRange[0], numRange[1]);
 };
 
 /**
@@ -87,5 +100,5 @@ const onSelect = (id) => {
  * Application per se:
  *
  */
-generateContactsCard();
-generatePaginationLinks();
+generateContactsCard(0, 9);
+generatePaginationLinks(10);
