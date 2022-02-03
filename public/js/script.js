@@ -86,7 +86,7 @@ const calcRange = (btnNumber) => {
 
 /**
  *
- * Event that receives the btn id and refresh the display
+ * Event that receives the btn id and refresh the display with the desired range!
  *
  */
 const onSelect = (id) => {
